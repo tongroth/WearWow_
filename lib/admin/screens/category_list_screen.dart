@@ -11,12 +11,13 @@ class AdminCategoryListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.find<AdminController>();
+    final primaryColor = Theme.of(context).primaryColor;
 
     return AdminLayout(
       title: "Categories",
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () => _showCategoryDialog(context),
-        backgroundColor: const Color(0xFFF42C8F),
+        backgroundColor: primaryColor,
         icon: const Icon(LucideIcons.plus, color: Colors.white),
         label: const Text("New Category", style: TextStyle(color: Colors.white)),
       ),
@@ -72,6 +73,7 @@ class AdminCategoryListScreen extends StatelessWidget {
     final nameCtrl = TextEditingController(text: category?.name ?? "");
     final iconCtrl = TextEditingController(text: category?.icon ?? "");
     final imgCtrl = TextEditingController(text: category?.image ?? "");
+    final subCtrl = TextEditingController(text: category?.subcategories.join(", ") ?? "");
     final controller = Get.find<AdminController>();
 
     showDialog(
@@ -96,6 +98,11 @@ class AdminCategoryListScreen extends StatelessWidget {
                 controller: imgCtrl,
                 decoration: const InputDecoration(labelText: "Image URL", hintText: "https://..."),
               ),
+              const SizedBox(height: 12),
+              TextField(
+                controller: subCtrl,
+                decoration: const InputDecoration(labelText: "Subcategories", hintText: "e.g. Dresses, Tops, Skirts"),
+              ),
             ],
           ),
         ),
@@ -110,7 +117,7 @@ class AdminCategoryListScreen extends StatelessWidget {
                 name: nameCtrl.text,
                 icon: iconCtrl.text,
                 image: imgCtrl.text.isNotEmpty ? imgCtrl.text : "https://via.placeholder.com/300",
-                subcategories: category?.subcategories ?? [],
+                subcategories: subCtrl.text.split(",").map((e) => e.trim()).where((e) => e.isNotEmpty).toList(),
               );
 
               if (category == null) {
@@ -125,7 +132,7 @@ class AdminCategoryListScreen extends StatelessWidget {
                 Get.back();
               }
             },
-            style: ElevatedButton.styleFrom(backgroundColor: const Color(0xFFF42C8F), foregroundColor: Colors.white),
+            style: ElevatedButton.styleFrom(backgroundColor: Theme.of(context).primaryColor, foregroundColor: Colors.white),
             child: const Text("Save"),
           ),
         ],

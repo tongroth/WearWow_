@@ -16,6 +16,7 @@ class AdminOrderListScreen extends StatelessWidget {
     final OrderListController uiController = Get.find<OrderListController>();
     //final AdminController adminController = Get.find<AdminController>();
     final AdminController adminController = Get.find<AdminController>();
+    final primaryColor = Theme.of(context).primaryColor;
 
     return DefaultTabController(
       length: 5,
@@ -64,10 +65,10 @@ class AdminOrderListScreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(color: Colors.grey.shade200),
               ),
-              child: const TabBar(
-                labelColor: Color(0xFFF42C8F),
+              child: TabBar(
+                labelColor: primaryColor,
                 unselectedLabelColor: Colors.grey,
-                indicatorColor: Color(0xFFF42C8F),
+                indicatorColor: primaryColor,
                 isScrollable: true,
                 tabAlignment: TabAlignment.start,
                 dividerColor: Colors.transparent,
@@ -272,7 +273,7 @@ class _AdminOrderCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const Text("Total", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                  Text("\$${order.total.toStringAsFixed(2)}", style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color(0xFFF42C8F))),
+                  Text("\$${order.total.toStringAsFixed(2)}", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Theme.of(context).primaryColor)),
                 ],
               ),
             ],

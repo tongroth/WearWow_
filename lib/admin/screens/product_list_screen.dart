@@ -11,12 +11,13 @@ class AdminProductListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.find<AdminController>();
+    final primaryColor = Theme.of(context).primaryColor;
 
     return AdminLayout(
       title: "Products",
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () => Get.toNamed('/admin/products/add'),
-        backgroundColor: const Color(0xFFF42C8F),
+        backgroundColor: primaryColor,
         icon: const Icon(LucideIcons.plus, color: Colors.white),
         label: const Text("Add Product", style: TextStyle(color: Colors.white)),
       ),
@@ -172,7 +173,7 @@ class _AdminProductCard extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("\$${product.price}", style: const TextStyle(fontWeight: FontWeight.bold, color: Color(0xFFF42C8F))),
+                    Text("\$${product.price}", style: TextStyle(fontWeight: FontWeight.bold, color: Theme.of(context).primaryColor)),
                     Text("Stock: 24", style: TextStyle(color: Colors.grey.shade600, fontSize: 12)), // Mock stock
                   ],
                 ),

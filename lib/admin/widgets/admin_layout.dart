@@ -103,6 +103,7 @@ class AdminLayout extends StatelessWidget {
 
   // Custom AppBar that adapts based on layout
   PreferredSizeWidget _buildAppBar(BuildContext context, {required bool isDesktop}) {
+    final primaryColor = Theme.of(context).primaryColor;
     return AppBar(
       title: Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
       backgroundColor: isDesktop ? Colors.transparent : Colors.white,
@@ -116,8 +117,8 @@ class AdminLayout extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(right: 16.0),
           child: CircleAvatar(
-            backgroundColor: const Color(0xFFF42C8F).withValues(alpha: 0.1),
-            child: const Text("A", style: TextStyle(color: Color(0xFFF42C8F), fontWeight: FontWeight.bold)),
+            backgroundColor: primaryColor.withValues(alpha: 0.1),
+            child: Text("A", style: TextStyle(color: primaryColor, fontWeight: FontWeight.bold)),
           ),
         ),
       ],
@@ -125,11 +126,12 @@ class AdminLayout extends StatelessWidget {
   }
 
   Widget _buildDrawerHeader() {
+    final primaryColor = Get.theme.primaryColor;
     return UserAccountsDrawerHeader(
       margin: EdgeInsets.zero,
-      decoration: const BoxDecoration(
-        color: Color(0xFFF42C8F), // Brand Pink
-        image: DecorationImage(
+      decoration: BoxDecoration(
+        color: primaryColor, // Brand Pink
+        image: const DecorationImage(
           image: NetworkImage("https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=500&q=60"),
           fit: BoxFit.cover,
           opacity: 0.2,
@@ -137,9 +139,9 @@ class AdminLayout extends StatelessWidget {
       ),
       accountName: const Text("Admin User", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
       accountEmail: const Text("admin@wearwow.com"),
-      currentAccountPicture: const CircleAvatar(
+      currentAccountPicture: CircleAvatar(
         backgroundColor: Colors.white,
-        child: Text("A", style: TextStyle(fontSize: 28, color: Color(0xFFF42C8F), fontWeight: FontWeight.bold)),
+        child: Text("A", style: TextStyle(fontSize: 28, color: primaryColor, fontWeight: FontWeight.bold)),
       ),
     );
   }
@@ -161,17 +163,18 @@ class AdminLayout extends StatelessWidget {
 
   Widget _buildNavItem(IconData icon, String title, String route) {
     final bool isSelected = Get.currentRoute == route;
+    final primaryColor = Get.theme.primaryColor;
     return ListTile(
-      leading: Icon(icon, color: isSelected ? const Color(0xFFF42C8F) : Colors.grey[700]),
+      leading: Icon(icon, color: isSelected ? primaryColor : Colors.grey[700]),
       title: Text(
         title,
         style: TextStyle(
-          color: isSelected ? const Color(0xFFF42C8F) : Colors.grey[800],
+          color: isSelected ? primaryColor : Colors.grey[800],
           fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
         ),
       ),
       selected: isSelected,
-      selectedTileColor: const Color(0xFFF42C8F).withValues(alpha: 0.05),
+      selectedTileColor: primaryColor.withValues(alpha: 0.05),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       contentPadding: const EdgeInsets.symmetric(horizontal: 24, vertical: 4),
       onTap: () {

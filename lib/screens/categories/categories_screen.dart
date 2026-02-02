@@ -211,7 +211,7 @@ class _SearchField extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withValues(alpha: 0.05),
             blurRadius: 12,
             offset: const Offset(0, 6),
           ),
@@ -287,8 +287,8 @@ class _ChipPill extends StatelessWidget {
           boxShadow: [
             BoxShadow(
               color: isSelected
-                  ? accent.withOpacity(0.2)
-                  : Colors.black.withOpacity(0.04),
+                  ? accent.withValues(alpha: 0.2)
+                  : Colors.black.withValues(alpha: 0.04),
               blurRadius: isSelected ? 12 : 8,
               offset: const Offset(0, 6),
             ),
@@ -322,7 +322,7 @@ class _FeaturedTile extends StatelessWidget {
           borderRadius: BorderRadius.circular(20),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.1),
+              color: Colors.black.withValues(alpha: 0.1),
               blurRadius: 14,
               offset: const Offset(0, 8),
             ),
@@ -340,8 +340,8 @@ class _FeaturedTile extends StatelessWidget {
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       colors: [
-                        Colors.black.withOpacity(0.05),
-                        Colors.black.withOpacity(0.65),
+                        Colors.black.withValues(alpha: 0.05),
+                        Colors.black.withValues(alpha: 0.65),
                       ],
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,

@@ -148,7 +148,7 @@ class ProductDetailScreen extends StatelessWidget {
                               shape: BoxShape.circle,
                               border: Border.all(color: Colors.grey.shade300),
                               boxShadow: isSelected ? [
-                                BoxShadow(color: color.withOpacity(0.4), blurRadius: 8, offset: const Offset(0, 4))
+                                BoxShadow(color: color.withValues(alpha: 0.4), blurRadius: 8, offset: const Offset(0, 4))
                               ] : [],
                             ),
                           ),
@@ -214,7 +214,7 @@ class ProductDetailScreen extends StatelessWidget {
           color: Colors.white,
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.05),
+              color: Colors.black.withValues(alpha: 0.05),
               blurRadius: 10,
               offset: const Offset(0, -5),
             ),

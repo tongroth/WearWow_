@@ -96,7 +96,7 @@ class HomeScreen extends StatelessWidget {
                 ),
                 boxShadow: [
                   BoxShadow(
-                    color: AppTheme.primaryColor.withOpacity(0.3),
+                    color: AppTheme.primaryColor.withValues(alpha: 0.3),
                     blurRadius: 20,
                     offset: const Offset(0, 10),
                   ),
@@ -107,11 +107,11 @@ class HomeScreen extends StatelessWidget {
                   // Decorative circles
                   Positioned(
                     top: -20, right: -20,
-                    child: CircleAvatar(radius: 50, backgroundColor: Colors.white.withOpacity(0.2)),
+                    child: CircleAvatar(radius: 50, backgroundColor: Colors.white.withValues(alpha: 0.2)),
                   ),
                   Positioned(
                     bottom: -40, left: 40,
-                    child: CircleAvatar(radius: 40, backgroundColor: Colors.white.withOpacity(0.2)),
+                    child: CircleAvatar(radius: 40, backgroundColor: Colors.white.withValues(alpha: 0.2)),
                   ),
 
                   // Content
@@ -124,7 +124,7 @@ class HomeScreen extends StatelessWidget {
                         Container(
                           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                           decoration: BoxDecoration(
-                            color: Colors.white.withOpacity(0.2),
+                            color: Colors.white.withValues(alpha: 0.2),
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: const Text("New Arrival", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 12)),

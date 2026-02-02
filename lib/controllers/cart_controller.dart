@@ -13,7 +13,7 @@ class CartController extends GetxController {
   int get itemCount => cartItems.fold(0, (sum, item) => sum + item.quantity);
 
   void addToCart(Product product, String size, Color color, int quantity) {
-    final cartId = "${product.id}-$size-${color.value}";
+    final cartId = "${product.id}-$size-${color.toARGB32()}";
     final index = cartItems.indexWhere((item) => item.id == cartId);
 
     if (index >= 0) {

@@ -33,7 +33,7 @@ class AdminController extends GetxController {
     products.add(product);
     isLoading.value = false;
     Get.back();
-    Get.snackbar("Success", "Product Added", backgroundColor: Colors.green.withOpacity(0.2));
+    Get.snackbar("Success", "Product Added", backgroundColor: Colors.green.withValues(alpha: 0.2));
   }
 
   Future<void> deleteProduct(String id) async {

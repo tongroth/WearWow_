@@ -176,7 +176,7 @@ class _CategoryAdminCard extends StatelessWidget {
             child: Image.network(
               category.image,
               fit: BoxFit.cover,
-              color: Colors.black.withOpacity(0.4),
+              color: Colors.black.withValues(alpha: 0.4),
               colorBlendMode: BlendMode.darken,
               errorBuilder: (_, __, ___) => Container(
                 color: Colors.grey[300],
@@ -236,7 +236,7 @@ class _CircleAction extends StatelessWidget {
       onTap: onTap,
       child: Container(
         padding: const EdgeInsets.all(6),
-        decoration: BoxDecoration(color: Colors.white.withOpacity(0.9), shape: BoxShape.circle),
+        decoration: BoxDecoration(color: Colors.white.withValues(alpha: 0.9), shape: BoxShape.circle),
         child: Icon(icon, size: 14, color: color),
       ),
     );

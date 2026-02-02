@@ -116,7 +116,7 @@ class AdminLayout extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(right: 16.0),
           child: CircleAvatar(
-            backgroundColor: const Color(0xFFF42C8F).withOpacity(0.1),
+            backgroundColor: const Color(0xFFF42C8F).withValues(alpha: 0.1),
             child: const Text("A", style: TextStyle(color: Color(0xFFF42C8F), fontWeight: FontWeight.bold)),
           ),
         ),
@@ -171,7 +171,7 @@ class AdminLayout extends StatelessWidget {
         ),
       ),
       selected: isSelected,
-      selectedTileColor: const Color(0xFFF42C8F).withOpacity(0.05),
+      selectedTileColor: const Color(0xFFF42C8F).withValues(alpha: 0.05),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       contentPadding: const EdgeInsets.symmetric(horizontal: 24, vertical: 4),
       onTap: () {

@@ -77,7 +77,7 @@ class AdminDashboardScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             CircleAvatar(
-              backgroundColor: data.color.withOpacity(0.1),
+              backgroundColor: data.color.withValues(alpha: 0.1),
               radius: 24,
               child: Icon(data.icon, color: data.color, size: 24),
             ),

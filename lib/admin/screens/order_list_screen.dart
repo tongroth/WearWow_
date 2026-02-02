@@ -156,7 +156,7 @@ class _AdminOrderCard extends StatelessWidget {
         tilePadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         shape: Border.all(color: Colors.transparent),
         leading: CircleAvatar(
-          backgroundColor: _getStatusColor(order.status).withOpacity(0.1),
+          backgroundColor: _getStatusColor(order.status).withValues(alpha: 0.1),
           child: Icon(_getStatusIcon(order.status), color: _getStatusColor(order.status), size: 20),
         ),
         title: Row(
@@ -172,7 +172,7 @@ class _AdminOrderCard extends StatelessWidget {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
               decoration: BoxDecoration(
-                color: _getStatusColor(order.status).withOpacity(0.1),
+                color: _getStatusColor(order.status).withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(4),
               ),
               child: Text(

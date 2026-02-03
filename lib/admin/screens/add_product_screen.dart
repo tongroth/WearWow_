@@ -184,14 +184,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
       if (_editingProduct == null) {
         _adminController.addProduct(updatedProduct);
       } else {
-        // Update logic
-        final index = _adminController.products.indexWhere((p) => p.id == _editingProduct!.id);
-        if (index != -1) {
-          _adminController.products[index] = updatedProduct;
-          _adminController.products.refresh();
-          Get.back();
-          Get.snackbar("Success", "Product Updated");
-        }
+        _adminController.updateProduct(updatedProduct);
       }
     }
   }

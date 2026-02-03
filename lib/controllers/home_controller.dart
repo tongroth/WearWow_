@@ -1,20 +1,32 @@
 import 'package:get/get.dart';
+import '../services/product_service.dart';
+import '../models/product.dart';
+import '../models/category.dart';
 
 class HomeController extends GetxController {
+  final ProductService _productService = Get.find<ProductService>();
+
   var isLoading = true.obs;
   var currentBannerIndex = 0.obs;
-  var selectedCategoryIndex = 0.obs; // New: For category chips
+  var selectedCategoryIndex = 0.obs;
 
-  // New: List of categories for the chips
-  final List<String> categories = ["All", "Women", "Men", "Shoes", "Accessories", "Sale"];
+  var products = <Product>[].obs;
+  var categories = <Category>[].obs;
 
   @override
   void onInit() {
     super.onInit();
-    // Simulate API loading
-    Future.delayed(const Duration(seconds: 2), () {
+    fetchData();
+  }
+
+  Future<void> fetchData() async {
+    isLoading.value = true;
+    try {
+      products.value = await _productService.getProducts();
+      categories.value = await _productService.getCategories();
+    } finally {
       isLoading.value = false;
-    });
+    }
   }
 
   void updateBannerIndex(int index) {

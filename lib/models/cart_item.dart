@@ -17,4 +17,20 @@ class CartItem {
   });
 
   double get totalPrice => product.price * quantity;
+
+  Map<String, dynamic> toJson() => {
+    'id': id,
+    'product': product.toJson(),
+    'selectedSize': selectedSize,
+    'selectedColor': selectedColor.toARGB32(),
+    'quantity': quantity,
+  };
+
+  factory CartItem.fromJson(Map<String, dynamic> json) => CartItem(
+    id: json['id'] ?? '',
+    product: Product.fromJson(json['product'] ?? {}),
+    selectedSize: json['selectedSize'] ?? '',
+    selectedColor: Color(json['selectedColor'] ?? 0xFF000000),
+    quantity: json['quantity'] ?? 1,
+  );
 }

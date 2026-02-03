@@ -14,6 +14,7 @@ class AddProductScreen extends StatefulWidget {
 class _AddProductScreenState extends State<AddProductScreen> {
   final _formKey = GlobalKey<FormState>();
   final _adminController = Get.find<AdminController>();
+  late final Product? _editingProduct;
 
   final _nameController = TextEditingController();
   final _priceController = TextEditingController();
@@ -25,9 +26,25 @@ class _AddProductScreenState extends State<AddProductScreen> {
   double _rating = 0.0;
 
   @override
+  void initState() {
+    super.initState();
+    _editingProduct = Get.arguments as Product?;
+    if (_editingProduct != null) {
+      _nameController.text = _editingProduct!.name;
+      _priceController.text = _editingProduct!.price.toString();
+      _originalPriceController.text = _editingProduct!.originalPrice?.toString() ?? "";
+      _imageController.text = _editingProduct!.image;
+      _selectedCategory = _editingProduct!.category;
+      _isNew = _editingProduct!.isNew;
+      _isTrending = _editingProduct!.isTrending;
+      _rating = _editingProduct!.rating;
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return AdminLayout(
-      title: "Add New Product",
+      title: _editingProduct == null ? "Add New Product" : "Edit Product",
       child: SingleChildScrollView(
         child: Form(
           key: _formKey,
@@ -118,7 +135,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: _submitForm,
-                  child: const Text("Add Product"),
+                  child: Text(_editingProduct == null ? "Add Product" : "Save Changes"),
                 ),
               ),
               const SizedBox(height: 40),
@@ -152,8 +169,8 @@ class _AddProductScreenState extends State<AddProductScreen> {
 
   void _submitForm() {
     if (_formKey.currentState!.validate()) {
-      final newProduct = Product(
-        id: DateTime.now().millisecondsSinceEpoch.toString(),
+      final updatedProduct = Product(
+        id: _editingProduct?.id ?? DateTime.now().millisecondsSinceEpoch.toString(),
         name: _nameController.text,
         price: double.parse(_priceController.text),
         originalPrice: _originalPriceController.text.isNotEmpty ? double.parse(_originalPriceController.text) : null,
@@ -164,7 +181,18 @@ class _AddProductScreenState extends State<AddProductScreen> {
         rating: _rating,
       );
 
-      _adminController.addProduct(newProduct);
+      if (_editingProduct == null) {
+        _adminController.addProduct(updatedProduct);
+      } else {
+        // Update logic
+        final index = _adminController.products.indexWhere((p) => p.id == _editingProduct!.id);
+        if (index != -1) {
+          _adminController.products[index] = updatedProduct;
+          _adminController.products.refresh();
+          Get.back();
+          Get.snackbar("Success", "Product Updated");
+        }
+      }
     }
   }
 }

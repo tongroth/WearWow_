@@ -48,6 +48,10 @@ class WearWowAdminApp extends StatelessWidget {
           page: () => const AddProductScreen(),
         ),
         GetPage(
+          name: '/admin/products/edit',
+          page: () => const AddProductScreen(),
+        ),
+        GetPage(
           name: '/admin/orders',
           page: () => const AdminOrderListScreen(),
           binding: BindingsBuilder(() {
@@ -57,6 +61,20 @@ class WearWowAdminApp extends StatelessWidget {
         GetPage(
           name: '/admin/categories',
           page: () => const AdminCategoryListScreen(),
+        ),
+        GetPage(
+          name: '/admin/settings',
+          page: () => Scaffold(
+            appBar: AppBar(title: const Text("Settings")),
+            body: const Center(child: Text("Admin Settings - Coming Soon")),
+          ),
+        ),
+        GetPage(
+          name: '/login',
+          page: () => Scaffold(
+            appBar: AppBar(title: const Text("Login")),
+            body: const Center(child: Text("Login Screen - Coming Soon")),
+          ),
         ),
       ],
     );

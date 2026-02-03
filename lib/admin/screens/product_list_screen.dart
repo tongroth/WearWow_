@@ -47,7 +47,9 @@ class AdminProductListScreen extends StatelessWidget {
                     },
                   ),
                 ),
-                IconButton(icon: const Icon(LucideIcons.slidersHorizontal), onPressed: () {}),
+                IconButton(icon: const Icon(LucideIcons.slidersHorizontal), onPressed: () {
+                  Get.snackbar("Filter", "Product filtering coming soon");
+                }),
               ],
             ),
           ),
@@ -81,7 +83,7 @@ class AdminProductListScreen extends StatelessWidget {
                   final product = controller.products[index];
                   return _AdminProductCard(
                     product: product,
-                    onEdit: () {}, // Navigate to edit
+                    onEdit: () => Get.toNamed('/admin/products/edit', arguments: product),
                     onDelete: () => controller.deleteProduct(product.id),
                   );
                 },

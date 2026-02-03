@@ -113,7 +113,9 @@ class AdminLayout extends StatelessWidget {
       iconTheme: const IconThemeData(color: Colors.black),
       titleTextStyle: const TextStyle(color: Colors.black, fontSize: 20),
       actions: [
-        IconButton(icon: const Icon(LucideIcons.bell), onPressed: () {}),
+        IconButton(icon: const Icon(LucideIcons.bell), onPressed: () {
+          Get.snackbar("Notifications", "You have no new notifications");
+        }),
         Padding(
           padding: const EdgeInsets.only(right: 16.0),
           child: CircleAvatar(

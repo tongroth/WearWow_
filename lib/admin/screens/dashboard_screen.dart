@@ -27,24 +27,28 @@ class AdminDashboardScreen extends StatelessWidget {
                   value: "\$${controller.orders.fold<double>(0, (sum, item) => sum + item.total).toStringAsFixed(2)}",
                   icon: LucideIcons.dollarSign,
                   color: Colors.green,
+                  onTap: () => Get.toNamed('/admin/orders'),
                 ),
                 _StatData(
                   title: "Total Orders",
                   value: "${controller.orders.length}",
                   icon: LucideIcons.shoppingBag,
                   color: Colors.blue,
+                  onTap: () => Get.toNamed('/admin/orders'),
                 ),
                 _StatData(
                   title: "Products",
                   value: "${controller.products.length}",
                   icon: LucideIcons.package,
                   color: Colors.orange,
+                  onTap: () => Get.toNamed('/admin/products'),
                 ),
                 _StatData(
                   title: "Categories",
                   value: "${controller.categories.length}",
                   icon: LucideIcons.layoutGrid,
                   color: Colors.purple,
+                  onTap: () => Get.toNamed('/admin/categories'),
                 ),
               ];
 
@@ -57,7 +61,11 @@ class AdminDashboardScreen extends StatelessWidget {
                   mainAxisSpacing: 16,
                 ),
                 itemBuilder: (context, index) {
-                  return _buildStatCard(stats[index]);
+                  return InkWell(
+                    onTap: stats[index].onTap,
+                    borderRadius: BorderRadius.circular(16),
+                    child: _buildStatCard(stats[index]),
+                  );
                 },
               );
             }),
@@ -104,5 +112,6 @@ class _StatData {
   final String value;
   final IconData icon;
   final Color color;
-  _StatData({required this.title, required this.value, required this.icon, required this.color});
+  final VoidCallback onTap;
+  _StatData({required this.title, required this.value, required this.icon, required this.color, required this.onTap});
 }

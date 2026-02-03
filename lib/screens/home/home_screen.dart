@@ -6,7 +6,7 @@ import '../../controllers/home_controller.dart';
 import '../../widgets/cart_icon_button.dart';
 import '../../widgets/product_card.dart';
 import '../../widgets/product_skeleton.dart';
-import '../../data/mock_data.dart';
+import '../../models/category.dart';
 import '../../core/app_theme.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -179,7 +179,9 @@ class HomeScreen extends StatelessWidget {
                 separatorBuilder: (_,__) => const SizedBox(width: 8),
                 itemBuilder: (context, index) {
                   return Obx(() {
+                    if (controller.categories.isEmpty) return const SizedBox.shrink();
                     final isSelected = controller.selectedCategoryIndex.value == index;
+                    final Category category = controller.categories[index];
                     return GestureDetector(
                       onTap: () => controller.selectCategory(index),
                       child: AnimatedContainer(
@@ -192,7 +194,7 @@ class HomeScreen extends StatelessWidget {
                         ),
                         alignment: Alignment.center,
                         child: Text(
-                          controller.categories[index],
+                          category.name,
                           style: TextStyle(
                             color: isSelected ? Colors.white : Colors.black,
                             fontWeight: FontWeight.bold,
@@ -250,13 +252,13 @@ class HomeScreen extends StatelessWidget {
                 ),
                 delegate: SliverChildBuilderDelegate(
                       (context, index) {
-                    final product = mockProducts[index];
+                    final product = controller.products[index];
                     return ProductCard(
                       product: product,
                       onTap: () => Get.toNamed('/product/${product.id}', arguments: product),
                     );
                   },
-                  childCount: mockProducts.length,
+                  childCount: controller.products.length,
                 ),
               ),
             );

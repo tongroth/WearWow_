@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'screens/dashboard_screen.dart';
 import 'screens/product_list_screen.dart';
 import 'screens/add_product_screen.dart';
@@ -8,8 +9,17 @@ import 'screens/category_list_screen.dart';
 import 'controllers/admin_controller.dart';
 import 'controllers/order_list_controller.dart';
 import '../core/app_theme.dart';
+import '../services/auth_service.dart';
+import '../services/product_service.dart';
+import '../services/order_service.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  try {
+    await Firebase.initializeApp();
+  } catch (e) {
+    debugPrint("Firebase initialization failed: $e");
+  }
   runApp(const WearWowAdminApp());
 }
 
@@ -31,6 +41,9 @@ class WearWowAdminApp extends StatelessWidget {
       ),
       // FIX: Initialize AdminController once globally and keep it alive
       initialBinding: BindingsBuilder(() {
+        Get.put<AuthService>(MockAuthService());
+        Get.put<ProductService>(MockProductService());
+        Get.put<OrderService>(MockOrderService());
         Get.put(AdminController(), permanent: true);
       }),
       initialRoute: '/admin/dashboard',
